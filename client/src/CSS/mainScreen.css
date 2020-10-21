@@ -7,6 +7,7 @@
   background-position: center;
   height: 100%;
   width: 100%;
+  font-family: 'Kalam', cursive;
 }
 
 .topBar {
@@ -25,6 +26,10 @@
 }
 
 .midBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 35%;
     background-color: rgba(0, 0, 0, 0.918);
@@ -87,28 +92,39 @@
     margin-left: 2%;
 }
 
-.addressBar {
-    margin-top: 5%;
-    margin-left: 5%;
-    text-align: center;
-    width: 90%;
-    background-image: url("../ELEMENTS/buttons/TearButton.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 70%;
-}
-
-.addressLetters {
-    padding-top: 10%;
-}
-
 .enableBtn {
-    
     width: 90%;
     background-image: url("../ELEMENTS/buttons/TearButton.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
+    border: none;
+    background-color: transparent;
     height: 70%;
+    color: rgb(184, 182, 182);
+    text-shadow: 0px 0px 2px rgb(209, 193, 104);
+    font-family: 'Kalam', cursive;
+    font-size: 140%;
+    margin-top: 5%;
+    transition: background-image 0.3s;
+}
+
+.enableBtn:hover {
+    background-image: url("../ELEMENTS/buttons/TearButtonHover.png");
+}
+
+.enableBtn1 {
+    width: 90%;
+    background-image: url("../ELEMENTS/buttons/TearButtonActive.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    height: 70%;
+    color: rgb(184, 182, 182);
+    text-shadow: 0px 0px 2px rgb(209, 193, 104);
+    font-family: 'Kalam', cursive;
+    font-size: 120%;
+    margin-top: 5%;
 }

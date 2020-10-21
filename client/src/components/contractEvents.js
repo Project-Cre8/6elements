@@ -6,7 +6,7 @@ import { ContractData } from "./contractData.js"
 
 export function ContractEvents({ 
     web3, ready, maskAddress, 
-    etherBalance, enable, hasMeta, network, unlockMask }) {
+    etherBalance, enable, hasMeta, network}) {
 
     
 
@@ -85,7 +85,7 @@ export function ContractEvents({
             
             web3={web3}
 
-            unlockMask={unlockMask}
+            
             
         />
            

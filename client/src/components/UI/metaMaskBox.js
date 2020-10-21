@@ -1,41 +1,48 @@
 import React, { useEffect } from 'react';
-
 import "../../CSS/mainScreen.css"
+
+const formatter = require("../../utility/utilityFunctions.js");
+
 
 export function MetaMaskBox({ enable, hasMeta, 
     maskAddress, category, 
-    network, web3, unlockMask}) {
+    network, web3}) {
     
+    const [hasAddress, setHasAddress] = React.useState(false)
     
 
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+    
+    useEffect(() => {
+        console.log(network)
+        if (network !== "3" && typeof web3.eth && maskAddress === "") {
+            setHasAddress(false)
+        } else {
+            setHasAddress(true);
+        }
+    }, [network, maskAddress, web3])
+    
+
+    const unlockMask = () => {
+        console.log(maskAddress)
+        window.ethereum.enable();
+    }
 
     const addressOrEnable = () => {
-        if (maskAddress == "") {
+        if (!hasAddress) {
             return (
-                <div className="enableFrame">
-                    <button className="enableBtn">
-                        Unlock
-                    </button>
-                </div>
+                
+                <button onClick={unlockMask} className="enableBtn">
+                    Unlock
+                </button>
+                
             )
         } else {
             return (
-                <div className="enableFrame">
-                    <div className="addressBar">
-                        <p className="addressLetters">
-                            address
-                        </p>
-                    </div>
-                </div>
+                
+                <button  disabled={true} className="enableBtn1">
+                    {formatter.formatAddress(maskAddress)}
+                </button>
+                
             )
             
         }
@@ -46,7 +53,10 @@ export function MetaMaskBox({ enable, hasMeta,
     return (
         <div className="metaMaskBar">
             <div className="foxImg" />
-            {addressOrEnable()}
+            <div className="enableFrame">
+                {addressOrEnable()}
+            </div>
+            
         </div>
     )
 }

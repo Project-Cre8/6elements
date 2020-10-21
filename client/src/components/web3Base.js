@@ -8,7 +8,7 @@ const ethers = require('ethers');
 
 
 
-export function Web3Base({maskAddress, network, hasMeta, enable, unlockMask}) {
+export function Web3Base({maskAddress, network, hasMeta, enable}) {
     const [loaded, setLoaded] = React.useState(false);
     const [etherBalance, setEtherBalance] = React.useState(0);
 

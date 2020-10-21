@@ -4,7 +4,7 @@ import { BaseScreen } from "./UI/baseScreen.js"
 
 const ethers = require("ethers");
 
-export function ContractData({ enable, hasMeta, maskAddress, network, web3, unlockMask }) {
+export function ContractData({ enable, hasMeta, maskAddress, network, web3}) {
     
     const [loaded, setLoaded] = React.useState(false);
     
@@ -53,7 +53,6 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, unlo
                 
                 web3={web3}
                 
-                unlockMask={unlockMask}
             />
                 
     
