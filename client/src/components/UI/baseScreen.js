@@ -32,7 +32,9 @@ export function BaseScreen({ enable, hasMeta,
 
    
 
-    
+    const cre8Link = () => {
+        window.open("https://projectcre8.io");
+    }
 
     return (
         <div className="basePane">
@@ -47,7 +49,9 @@ export function BaseScreen({ enable, hasMeta,
                 />
             </div>
             <div className="topMidBar">
+                <div className="topPrizeBanner">
 
+                </div>
             </div>
             <div className="midBar">
                 <Light 
@@ -82,10 +86,15 @@ export function BaseScreen({ enable, hasMeta,
                 />
             </div>
             <div className="bottomMidBar">
-
+                <button className="buyButton">
+                    Purchase Gems (0.01 ETH)
+                </button>
             </div>
             <div className="bottomBar">
+                <div className="bottomInfo">
 
+                </div>
+                <button className="cre8Logo" onClick={cre8Link} />
             </div>
         </div>
     )
