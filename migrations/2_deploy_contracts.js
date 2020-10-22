@@ -1,5 +1,8 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+const sixElements = artifacts.require("./SixElements.sol");
+
+const name = 'SixElements';
+const symbol = 'SELM'
 
 module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
+  deployer.deploy(sixElements,name,symbol);
 };
