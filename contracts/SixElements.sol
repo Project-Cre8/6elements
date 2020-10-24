@@ -8,6 +8,7 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 contract SixElements is VRFConsumerBase, ERC721 {
   bytes32 internal keyHash;
   uint256 internal fee;
+  uint256 public constant playFee = 0.5 * (10**18);
 
   mapping(uint256 => uint256) public rewardRates;
   mapping(uint256 => Token) public tokens;
@@ -28,6 +29,9 @@ contract SixElements is VRFConsumerBase, ERC721 {
   event Receive(address indexed player, uint256 element1, uint256 rank1, uint256 element2, uint256 rank2);
   event Redeem(address indexed player, uint256 element, uint256 reward);
 
+  address constant vrf = 0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9;
+  address constant link = 0xa36085F69e2889c224210F603D836748e7dC0088;
+
   /**
    * Constructor inherits VRFConsumerBase
    *
@@ -39,8 +43,8 @@ contract SixElements is VRFConsumerBase, ERC721 {
   constructor(string memory name, string memory symbol)
     public
     VRFConsumerBase(
-      0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9, // VRF Coordinator
-      0xa36085F69e2889c224210F603D836748e7dC0088 // LINK Token
+      vrf, // VRF Coordinator
+      link // LINK Token
     )
     ERC721(name, symbol)
   {
@@ -78,15 +82,20 @@ contract SixElements is VRFConsumerBase, ERC721 {
   }
 
   /**
-   * Requests randomness from a user-provided seed
+   * Receiver function for ERC677
    */
-  function getElements() external payable {
-    require(LINK.transferFrom(msg.sender, address(this), fee), '6ELEMENT: Not enough LINK');
+  function onTokenTransfer(
+    address _from,
+    uint256 _amount,
+    bytes calldata _data
+  ) external {
+    require(msg.sender == link, '6ELEMENT: Only LINK token is acceptable');
+    require(_amount == playFee, '6ELEMENT: Not enough LINK');
 
     uint256 seed = uint256(blockhash(block.number - 1));
     bytes32 requestId = requestRandomness(keyHash, fee, seed);
     // bytes32 requestId = getId(keyHash, fee, seed); // DELETE: For local test
-    _receivers[requestId] = msg.sender;
+    _receivers[requestId] = _from;
 
     // DELETE: For local test
     // fulfillRandomness(requestId, uint256(keccak256(abi.encodePacked(now, msg.sender, '1'))));
