@@ -5,19 +5,20 @@ import "../../../CSS/elements.css"
 
 
 export function Fire({ enable, hasMeta, 
-    maskAddress, category, 
+    maskAddress, category, inventory,
     network, web3}) {
+     
+    const [one, setOne] = React.useState(0);
+    const [two, setTwo] = React.useState(0);
+    const [three, setThree] = React.useState(0);
     
-    
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+    useEffect(() => {
+        if (typeof inventory !== "undefined") {
+            setOne(inventory.a);
+            setTwo(inventory.b);
+            setThree(inventory.c);
+        }
+    }, [hasMeta, inventory]);
 
    
 
@@ -29,21 +30,21 @@ export function Fire({ enable, hasMeta,
                 Fire
             </div>
             <div className="elementTokenTri">
-                <div className="fire1" />
+                <div className={one > 0 ? "fire1" : "fire1Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {one}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="fire2" />
+                <div className={two > 0 ? "fire2" : "fire2Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {two}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="fire3" />
+                <div className={three > 0 ? "fire3" : "fire3Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {three}
                 </div>
             </div>
             <div className="elementButtonBox">

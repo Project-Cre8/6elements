@@ -5,19 +5,20 @@ import "../../../CSS/elements.css"
 
 
 export function Light({ enable, hasMeta, 
-    maskAddress, category, 
+    maskAddress, category, inventory,
     network, web3}) {
     
     
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+        const [one, setOne] = React.useState(0);
+        const [two, setTwo] = React.useState(0);
+        
+        useEffect(() => {
+            
+            if (typeof inventory !== "undefined") {
+                setOne(inventory.a);
+                setTwo(inventory.b);
+            }
+        }, [hasMeta, inventory]);
 
    
 
@@ -29,22 +30,21 @@ export function Light({ enable, hasMeta,
                 Light
             </div>
             <div className="elementTokenDual">
-                <div className="light1" />
+                <div className={one > 0 ? "light1" : "light1Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {one}
                 </div>
             </div>
             <div className="elementTokenDual">
-                <div className="light2" />
+                <div className={two > 0 ? "light2" : "light2Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {two}
                 </div>
             </div>
             <div className="elementButtonBox">
                 <button className="redeemButton">
                     Redeem
                 </button>
-                
             </div>
         </div>
     )

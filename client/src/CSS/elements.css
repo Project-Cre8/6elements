@@ -54,7 +54,9 @@
     background-image: url("../ELEMENTS/gemsOff/light1Off.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    width: 35%;
+    height: 70%; 
 }
 
 .light2 {
@@ -72,6 +74,8 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center; 
+    width: 35%;
+    height: 70%;
 }
 
 .earth1 {
@@ -96,6 +100,35 @@
 
 .earth3 {
     background-image: url("../ELEMENTS/gems/earth3.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.earth1Off {
+    background-image: url("../ELEMENTS/gemsOff/earth1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth2Off {
+    background-image: url("../ELEMENTS/gemsOff/earth2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth3Off {
+    background-image: url("../ELEMENTS/gemsOff/earth3Off.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center; 
@@ -132,6 +165,35 @@
     height: 85%;
 }
 
+.fire1Off {
+    background-image: url("../ELEMENTS/gemsOff/fire1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire2Off {
+    background-image: url("../ELEMENTS/gemsOff/fire2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire3Off {
+    background-image: url("../ELEMENTS/gemsOff/fire3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
 .water1 {
     background-image: url("../ELEMENTS/gems/water1.PNG");
     background-size: 100% 100%;
@@ -154,6 +216,35 @@
 
 .water3 {
     background-image: url("../ELEMENTS/gems/water3.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.water1Off {
+    background-image: url("../ELEMENTS/gemsOff/water1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water2Off {
+    background-image: url("../ELEMENTS/gemsOff/water2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water3Off {
+    background-image: url("../ELEMENTS/gemsOff/water3Off.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center; 
@@ -190,6 +281,35 @@
     height: 85%;
 }
 
+.wind1Off {
+    background-image: url("../ELEMENTS/gemsOff/wind1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind2Off {
+    background-image: url("../ELEMENTS/gemsOff/wind2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind3Off {
+    background-image: url("../ELEMENTS/gemsOff/wind3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
 .dark1 {
     background-image: url("../ELEMENTS/gems/dark1.png");
     background-size: 100% 100%;
@@ -202,6 +322,26 @@
 
 .dark2 {
     background-image: url("../ELEMENTS/gems/dark2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.dark1Off {
+    background-image: url("../ELEMENTS/gemsOff/dark1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.dark2Off {
+    background-image: url("../ELEMENTS/gemsOff/dark2Off.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center; 

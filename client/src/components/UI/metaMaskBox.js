@@ -4,7 +4,7 @@ import "../../CSS/mainScreen.css"
 const formatter = require("../../utility/utilityFunctions.js");
 
 
-export function MetaMaskBox({ enable, hasMeta, 
+export function MetaMaskBox({ enable, hasMeta,
     maskAddress, category, 
     network, web3}) {
     
@@ -13,10 +13,10 @@ export function MetaMaskBox({ enable, hasMeta,
 
     
     useEffect(() => {
-        console.log(network)
-        if (network !== "3" && typeof web3.eth && maskAddress === "") {
+        if (network !== "42" || typeof web3.eth === "undefined" && maskAddress === "") {
             setHasAddress(false)
         } else {
+            
             setHasAddress(true);
         }
     }, [network, maskAddress, web3])

@@ -5,19 +5,21 @@ import "../../../CSS/elements.css"
 
 
 export function Water({ enable, hasMeta, 
-    maskAddress, category, 
+    maskAddress, category, inventory,
     network, web3}) {
     
     
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+    const [one, setOne] = React.useState(0);
+    const [two, setTwo] = React.useState(0);
+    const [three, setThree] = React.useState(0);
+    
+    useEffect(() => {
+        if (typeof inventory !== "undefined") {
+            setOne(inventory.a);
+            setTwo(inventory.b);
+            setThree(inventory.c);
+        }
+    }, [hasMeta, inventory]);
 
    
 
@@ -29,21 +31,21 @@ export function Water({ enable, hasMeta,
                 Water
             </div>
             <div className="elementTokenTri">
-                <div className="water1" />
+                <div className={one > 0 ? "water1" : "water1Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {one}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="water2" />
+                <div className={two > 0 ? "water2" : "water2Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {two}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="water3" />
+                <div className={three > 0 ? "water3" : "water3Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {three}
                 </div>
             </div>
             <div className="elementButtonBox">

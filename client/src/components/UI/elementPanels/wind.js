@@ -5,19 +5,21 @@ import "../../../CSS/elements.css"
 
 
 export function Wind({ enable, hasMeta, 
-    maskAddress, category, 
+    maskAddress, category, inventory,
     network, web3}) {
     
     
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+    const [one, setOne] = React.useState(0);
+    const [two, setTwo] = React.useState(0);
+    const [three, setThree] = React.useState(0);
+    
+    useEffect(() => {
+        if (typeof inventory !== "undefined") {
+            setOne(inventory.a);
+            setTwo(inventory.b);
+            setThree(inventory.c);
+        }
+    }, [hasMeta, inventory]);
 
    
 
@@ -29,21 +31,21 @@ export function Wind({ enable, hasMeta,
                 Wind
             </div>
             <div className="elementTokenTri">
-                <div className="wind1" />
+                <div className={one > 0 ? "wind1" : "wind1Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {one}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="wind2" />
+                <div className={two > 0 ? "wind2" : "wind2Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {two}
                 </div>
             </div>
             <div className="elementTokenTri">
-                <div className="wind3" />
+                <div className={three > 0 ? "wind3" : "wind3Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {three}
                 </div>
             </div>
             <div className="elementButtonBox">

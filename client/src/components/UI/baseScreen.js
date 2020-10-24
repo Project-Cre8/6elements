@@ -7,30 +7,28 @@ import { Water } from "./elementPanels/water";
 import { Wind } from "./elementPanels/wind";
 import { Dark } from "./elementPanels/dark";
 
-
-
-
-
-
 import "../../CSS/mainScreen.css"
 
-export function BaseScreen({ enable, hasMeta, 
-    maskAddress, category, 
+const linkIcon = require("../../ELEMENTS/LinkLogo.png");
+
+export function BaseScreen({ enable, hasMeta, elements, link,
+    maskAddress, category, backpack, pool,
     network, web3}) {
     
     
 
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
-
-   
+    const buyElements = () => {
+        
+        let value = 10 * (10 ** 18);
+        value = value.toString();
+        console.log(value);
+        // link.methods.approve(elements._address, value).send({ from: maskAddress }, (err, res) => {
+        //     console.log(res)
+        // })
+        elements.methods.getElements().send({ from: maskAddress }, (err, res) => {
+            console.log(res);
+        })
+    }
 
     const cre8Link = () => {
         window.open("https://projectcre8.io");
@@ -49,45 +47,62 @@ export function BaseScreen({ enable, hasMeta,
                 />
             </div>
             <div className="topMidBar">
-                <div className="topPrizeBanner">
-
+                <div className="topPrizeBanner" />
+                <div className="prizeHeader">
+                    PRIZE POOL
                 </div>
+                <div className="prizeMain">
+                    <span style={{position: "relative", top: "-17%"}} >{pool}</span> <img src={linkIcon} alt="link" className="linkIconBig" />
+                </div>
+                
             </div>
             <div className="midBar">
                 <Light 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.light}
+                    hasMeta={hasMeta}
                 />
                 <Earth 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.earth}
+                    hasMeta={hasMeta}
                 />
                 <Fire 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.fire}
+                    hasMeta={hasMeta}
                 />
                 <Water 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.water}
+                    hasMeta={hasMeta}
                 />
                 <Wind 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.wind}
+                    hasMeta={hasMeta}
                 />
                 <Dark 
                     maskAddress={maskAddress}
                     web3={web3}
                     network={network}
+                    inventory={backpack.dark}
+                    hasMeta={hasMeta}
                 />
             </div>
             <div className="bottomMidBar">
-                <button className="buyButton">
-                    Purchase Gems (0.01 ETH)
+                <button onClick={buyElements} className="buyButton">
+                    Purchase Gems (0.5 LINK)
                 </button>
             </div>
             <div className="bottomBar">

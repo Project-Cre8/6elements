@@ -31,18 +31,16 @@ function App() {
   useEffect(() => {  // When Metamask finally deprecates, we can add network to this loop. Or maybe there will be an event to listen to.
     const address = setInterval(() => {
       if (hasMeta) {
-        if (
-          window.ethereum.selectedAddress !== maskAddress &&
-          window.ethereum.selectedAddress !== null
-        ) {
-          setMaskAddress(window.ethereum.selectedAddress);
-        } else {
-          setMaskAddress("");
-        }
-        // setLoaded(true);    wait and see how long till this breaks
+          if (window.ethereum.selectedAddress !== maskAddress) {
+              if (window.ethereum.selectedAddress !== null) {
+                  setMaskAddress(window.ethereum.selectedAddress);
+              } else {
+                  setMaskAddress("");
+              }
+              setLoaded(true);
+          }
       }
-    }, 1000);
-
+    }, 1000)
     return () => clearInterval(address);
   });
 

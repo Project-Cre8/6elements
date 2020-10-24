@@ -5,19 +5,20 @@ import "../../../CSS/elements.css"
 
 
 export function Dark({ enable, hasMeta, 
-    maskAddress, category, 
+    maskAddress, category, inventory,
     network, web3}) {
     
     
-    // TEST DATA REMAINING ON LOG-OFF
-    // useEffect(() => {
-    //     if (network !== "3" && typeof web3.eth && maskAddress === "") {
-    //         setAcctOn(false)
-    //     } else {
-    //         setAcctOn(true);
-    //     }
-    // }, [network, maskAddress, web3])
-    // TEST DATA REMAINING ON LOG-OFF
+    const [one, setOne] = React.useState(0);
+    const [two, setTwo] = React.useState(0);
+    
+    useEffect(() => {
+        console.log(typeof inventory);
+        if (typeof inventory !== "undefined") {
+            setOne(inventory.a);
+            setTwo(inventory.b);
+        }
+    }, [hasMeta, inventory]);
 
    
 
@@ -29,15 +30,15 @@ export function Dark({ enable, hasMeta,
                 Dark
             </div>
             <div className="elementTokenDual">
-                <div className="dark1" />
+                <div className={one > 0 ? "dark1" : "dark1Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {one}
                 </div>
             </div>
             <div className="elementTokenDual">
-                <div className="dark2" />
+                <div className={two > 0 ? "dark2" : "dark2Off"} />
                 <div className="tokenInfo">
-                    X 0
+                    X {two}
                 </div>
             </div>
             <div className="elementButtonBox">

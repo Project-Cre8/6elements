@@ -5,71 +5,72 @@ import { ContractData } from "./contractData.js"
 
 
 export function ContractEvents({ 
-    web3, ready, maskAddress, 
+    web3, ready, maskAddress, elements, link,
     etherBalance, enable, hasMeta, network}) {
 
     
 
-    // const [eventListNova, setEventListNova] = React.useState({list: []});
-    // const [novaEventChange, setNovaEventChange] = React.useState({});
+    const [eventListElements, setEventListElements] = React.useState({list: []});
+    const [elementsEventChange, setElementsEventChange] = React.useState({});
 
     //Event Listeners
     
 
     // NOVA
-    // useEffect(() => {
-    //     if (ready) {
-    //         let dataListNova = []
-    //         let subscriptionNova;
-    //         nova.getPastEvents("allEvents", {fromBlock: 0}, (err, res) => {
-    //             let currentBlock; 
-    //             if (res.length === 0) {
-    //                 currentBlock = 0;
-    //             } else {
-    //                 currentBlock = res[res.length - 1].blockNumber;
-    //             }
-    //             res.forEach(item => {
-    //                 if (item.event === "Play" || item.event === "Burned" || item.event === "Bonus" || item.event === "SellOut") {
-    //                     if (item.returnValues.user.toUpperCase() === maskAddress.toUpperCase()) {
-    //                         dataListNova.push(item);
-    //                     }
-    //                 } else if (item.event === "Transfer") {
-    //                     if (item.returnValues.from.toUpperCase() === maskAddress.toUpperCase() || item.returnValues.to.toUpperCase() === maskAddress.toUpperCase()) {
-    //                         dataListNova.push(item);
-    //                     }
-    //                 }
+    useEffect(() => {
+        if (ready) {
+            let dataListNova = []
+            let subscriptionNova;
+            elements.getPastEvents("allEvents", {fromBlock: 0}, (err, res) => {
+                let currentBlock; 
+                if (res.length === 0) {
+                    currentBlock = 0;
+                } else {
+                    currentBlock = res[res.length - 1].blockNumber;
+                }
+                res.forEach(item => {
+                    if (item.event === "Receive") {
+                        // if (item.returnValues.user.toUpperCase() === maskAddress.toUpperCase()) {
+                        //     dataListNova.push(item);
+                        // }
+                    } else if (item.event === "Redeem") {
+                        // if (item.returnValues.from.toUpperCase() === maskAddress.toUpperCase() || item.returnValues.to.toUpperCase() === maskAddress.toUpperCase()) {
+                        //     dataListNova.push(item);
+                        // }
+                    }
                     
-    //             });
-    //             setEventListNova({list: dataListNova})
-    //             subscriptionNova = nova.events.allEvents({
-    //                 fromBlock: currentBlock + 1
-    //             }, (err, res) => {
-    //                 console.log(res);
-    //             })
-    //             .on("data", (item) => {
-    //                 setNovaEventChange(item);
-    //                 while (dataListNova.length > 19) {
-    //                     dataListNova.shift();
-    //                 }
-    //                 if (item.event === "Play" || item.event === "Burned" || item.event === "Bonus" || item.event === "SellOut") {
-    //                     if (item.returnValues.user.toUpperCase() === maskAddress.toUpperCase()) {
-    //                         dataListNova.push(item);
-    //                     }
-    //                 } else if (item.event === "Transfer") {
-    //                     if (item.returnValues.from.toUpperCase() === maskAddress.toUpperCase() || item.returnValues.to.toUpperCase() === maskAddress.toUpperCase()) {
-    //                         dataListNova.push(item);
-    //                     }
-    //                 }
+                });
+                setEventListElements({list: dataListNova})
+                subscriptionNova = elements.events.allEvents({
+                    fromBlock: currentBlock + 1
+                }, (err, res) => {
+                    console.log(res);
+                })
+                .on("data", (item) => {
+                    console.log(item);
+                    setElementsEventChange(item);
+                    while (dataListNova.length > 19) {
+                        dataListNova.shift();
+                    }
+                    if (item.event === "Receive") {
+                        // if (item.returnValues.user.toUpperCase() === maskAddress.toUpperCase()) {
+                        //     dataListNova.push(item);
+                        // }
+                    } else if (item.event === "Redeem") {
+                        // if (item.returnValues.from.toUpperCase() === maskAddress.toUpperCase() || item.returnValues.to.toUpperCase() === maskAddress.toUpperCase()) {
+                        //     dataListNova.push(item);
+                        // }
+                    }
                     
                     
                     
-    //             })
-    //             return () => subscriptionNova.unsubscribe(() => {});
-    //         });
-    //     } else {
-    //         return;
-    //     }
-    // }, [nova, ready, maskAddress, network]);
+                })
+                return () => subscriptionNova.unsubscribe(() => {});
+            });
+        } else {
+            return;
+        }
+    }, [elements, ready, maskAddress, network]);
 
     return (
         
@@ -82,8 +83,10 @@ export function ContractEvents({
             enable={enable} 
             hasMeta={hasMeta} 
             maskAddress={maskAddress} 
-            
+            elements={elements}
+            link={link}
             web3={web3}
+            elementsEventChange={elementsEventChange}
 
             
             

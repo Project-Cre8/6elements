@@ -4,59 +4,146 @@ import { BaseScreen } from "./UI/baseScreen.js"
 
 const ethers = require("ethers");
 
-export function ContractData({ enable, hasMeta, maskAddress, network, web3}) {
+const gameAddr = "0x822fd9f5cc627a10bDCD60415256175404660F8E";
+
+export function ContractData({ enable, hasMeta, maskAddress, network, web3, elements, link, elementsEventChange}) {
     
     const [loaded, setLoaded] = React.useState(false);
+    const [backpack, setBackpack] = React.useState({});
+    const [prizePool, setPrizePool] = React.useState(0);
     
     useEffect(() => {
         
-        if (maskAddress !== "" && network === "3" && typeof nova !== "undefined") {
+        
+
+        if (maskAddress !== "" && network === "42" && typeof elements.methods !== "undefined" && hasMeta) {
             
-            // let Obj = {};
-            // nova.methods.getAllInfo().call((err, res) => {
-            //     Obj.regular = ethers.utils.formatUnits(res.regular, 6);
-            //     Obj.stakingPot = ethers.utils.formatUnits(res.stakingPot, 18);
-            //     Obj.stakeFee = ethers.utils.formatUnits(res.stakingFee, 6);
-            //     Obj.timer = res.timeToEnd;
-            //     Obj.exitPot = ethers.utils.formatUnits(res.exitPot, 18);
-            //     Obj.timerPot = ethers.utils.formatUnits(res.timerPot, 18);
-            //     nova.methods.getUserInfo(maskAddress).call((error, resul) => {
-            //         Obj.lastBlock = resul.lastTime;
-            //         Obj.balance = ethers.utils.formatUnits(resul.userBalance, 6);
-            //         Obj.sellOutCost = ethers.utils.formatUnits(resul.sellOutCost, 6);
-            //         setNovaData(Obj);
-            //         setLoaded(true);
-                    
-            //     })
-                
-            // })
-            setLoaded(true); // <----- REMOVE THIS!!!!
-        } else {
+            let inventory = {
+                light: {
+                    a: 0,
+                    b: 0
+                },
+                earth: {
+                    a: 0,
+                    b: 0,
+                    c: 0
+                },
+                fire: {
+                    a: 0,
+                    b: 0,
+                    c: 0
+                },
+                water: {
+                    a: 0,
+                    b: 0,
+                    c: 0
+                },
+                wind: {
+                    a: 0,
+                    b: 0,
+                    c: 0
+                },
+                dark: {
+                    a: 0,
+                    b: 0
+                }
+            };
+
+            link.methods.balanceOf(gameAddr).call((e, r) => {
+                let prize = web3.utils.fromWei(r);
+                console.log(prize)
+                setPrizePool(prize);
+            })
+            
+            elements.methods.balanceOf(maskAddress).call((err, res) => {
+                // Obj.regular = ethers.utils.formatUnits(res.regular, 6);
+                let tokens = res;
+                let i = 0;
+                const getTokenInfo = () => {
+                    if (i >= tokens) {
+                        setBackpack(inventory);
+                        setLoaded(true);
+                        return;
+                    } else {
+                        elements.methods.tokenOfOwnerByIndex(maskAddress, i).call((err, res) => {
+                            elements.methods.tokenInfo(res).call((error, result) => {
+                                if (result.element === "0") {
+                                    if (result.rank === "0") {
+                                        inventory.fire.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.fire.b += 1;
+                                    } else if (result.rank === "2") {
+                                        inventory.fire.c += 1;
+                                    }
+                                } else if (result.element === '1') {
+                                    if (result.rank === "0") {
+                                        inventory.water.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.water.b += 1;
+                                    } else if (result.rank === "2") {
+                                        inventory.water.c += 1;
+                                    }
+                                } else if (result.element === "2") {
+                                    if (result.rank === "0") {
+                                        inventory.earth.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.earth.b += 1;
+                                    } else if (result.rank === "2") {
+                                        inventory.earth.c += 1;
+                                    }
+                                } else if (result.element === "3") {
+                                    if (result.rank === "0") {
+                                        inventory.wind.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.wind.b += 1;
+                                    } else if (result.rank === "2") {
+                                        inventory.wind.c += 1;
+                                    }
+                                } else if (result.element === "4") {
+                                    if (result.rank === "0") {
+                                        inventory.light.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.light.b += 1;
+                                    } 
+                                } else if (result.element === "5") {
+                                    if (result.rank === "0") {
+                                        inventory.dark.a += 1;
+                                    } else if (result.rank === "1") {
+                                        inventory.dark.b += 1;
+                                    } 
+                                }
+                                
+                                i++;
+                                getTokenInfo();
+                            });
+                        });
+                    }
+                }
+                getTokenInfo();
+            });
+        } else if (hasMeta) {
             setLoaded(true);
         }
             
         
-    }, [maskAddress, network]);
+    }, [maskAddress, network, elementsEventChange]);
 
     
 
     if (loaded) {
         return (
-            
-    
-                
+
             <BaseScreen
                 enable={enable} 
                 hasMeta={hasMeta}
                 maskAddress={maskAddress}
                 network={network}
-                
+                elements={elements}
+                link={link}
                 web3={web3}
-                
+                backpack={backpack}
+                pool={prizePool}
             />
-                
-    
-                
         )
     } else {
         return(<div> Loading </div>)
