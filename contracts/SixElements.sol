@@ -4,11 +4,13 @@ pragma solidity >=0.4.21 <0.7.0;
 // import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 import './chainlink/VRFConsumerBase.sol'; // prevent to load double safemath
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
 
-contract SixElements is VRFConsumerBase, ERC721 {
+contract SixElements is VRFConsumerBase, ERC721, Ownable {
   bytes32 internal keyHash;
   uint256 internal fee;
   uint256 public constant playFee = 0.5 * (10**18);
+  uint256 public constant managementFee = 0.1 * (10**18);
 
   mapping(uint256 => uint256) public rewardRates;
   mapping(uint256 => Token) public tokens;
@@ -91,6 +93,7 @@ contract SixElements is VRFConsumerBase, ERC721 {
   ) external {
     require(msg.sender == link, '6ELEMENT: Only LINK token is acceptable');
     require(_amount == playFee, '6ELEMENT: Not enough LINK');
+    require(LINK.transfer(owner(), managementFee), '6ELEMENT: transfer error');
 
     uint256 seed = uint256(blockhash(block.number - 1));
     bytes32 requestId = requestRandomness(keyHash, fee, seed);
@@ -182,5 +185,9 @@ contract SixElements is VRFConsumerBase, ERC721 {
     tokenId = totalSupply();
 
     tokens[tokenId] = Token({element: element, rank: rank});
+  }
+
+  function withdraw() external onlyOwner {
+    require(LINK.transfer(msg.sender, LINK.balanceOf(address(this))), '6ELEMENT: transfer error');
   }
 }
