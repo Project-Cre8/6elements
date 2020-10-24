@@ -157,9 +157,9 @@ contract SixElements is VRFConsumerBase, ERC721 {
       _burn(tokenIds[i]);
     }
 
-    uint256 totalBalance = address(this).balance;
+    uint256 totalBalance = LINK.balanceOf(address(this));
     uint256 reward = totalBalance.mul(rewardRates[element]).div(100);
-    msg.sender.transfer(reward);
+    require(LINK.transfer(msg.sender, reward), '6ELEMENT: transfer error');
 
     emit Redeem(msg.sender, element, reward);
   }
