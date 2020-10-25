@@ -28,6 +28,11 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     uint8 rank;
   }
 
+  struct BurnToken {
+    bool set;
+    uint256 tokenId;
+  }
+
   event Receive(address indexed player, uint256 element1, uint256 rank1, uint256 element2, uint256 rank2);
   event Redeem(address indexed player, uint256 element, uint256 reward);
 
@@ -143,21 +148,28 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
       necessaryCount = 2;
     }
 
-    uint256[] memory tokenIds;
+    BurnToken[] memory burnTokens = new BurnToken[](necessaryCount);
     uint256 length = balanceOf(msg.sender);
+    uint256 count;
     for (uint256 i = 0; i < length; i++) {
       uint256 tokenId = tokenOfOwnerByIndex(msg.sender, i);
-      if (tokens[tokenId].element == element) {
-        tokenIds[tokens[tokenId].rank] = tokenId;
-        if (tokenIds.length == necessaryCount) {
+      Token memory token = tokens[tokenId];
+      if (
+        token.element == element
+        && !burnTokens[token.rank].set
+      ) {
+        burnTokens[token.rank].set = true;
+        burnTokens[token.rank].tokenId = tokenId;
+        count++;
+        if (count == necessaryCount) {
           break;
         }
       }
     }
-    require(tokenIds.length == necessaryCount, '6ELEMENT: you do not have necessary elements');
+    require(count == necessaryCount, '6ELEMENT: you do not have necessary elements');
 
-    for (uint256 i = 0; i < tokenIds.length; i++) {
-      _burn(tokenIds[i]);
+    for (uint256 i = 0; i < burnTokens.length; i++) {
+      _burn(burnTokens[i].tokenId);
     }
 
     uint256 totalBalance = LINK.balanceOf(address(this));
