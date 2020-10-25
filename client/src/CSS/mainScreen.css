@@ -1,0 +1,241 @@
+.basePane {
+  padding: 0;
+  margin: 0;
+  background-image: url("../ELEMENTS/Element\ Wallpapers\ -\ Wallpaper\ Cave.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  font-family: 'Kalam', cursive;
+}
+
+.topBar {
+    width: 100%;
+    height: 11%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.topMidBar {
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.prizeHeader {
+    height: 10%;
+    width: 10%;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    font-size: 130%;
+    font-family: 'Kalam', cursive;
+    
+    z-index: 2;
+    margin-top: 1.3%;
+
+}
+
+.prizeMain {
+    width: 14%;
+    height: 22%;
+    font-size: 200%;
+    text-align: center;
+    font-family: 'Kalam', cursive;
+    color: white;
+    z-index: 2;
+}
+
+.midBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35%;
+    background-color: rgba(0, 0, 0, 0.918);
+    
+}
+
+.bottomMidBar {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.buyButton1 {
+    background-image: url("../ELEMENTS/buttons/buyButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    width: 20%;
+    height: 65%;
+    font-size: 180%;
+    font-weight: 900;
+    color: white;
+    font-family: 'Kalam', cursive;
+    transition: background-image 0.4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buyButton {
+    background-image: url("../ELEMENTS/buttons/buyButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    width: 20%;
+    height: 65%;
+    font-size: 180%;
+    font-weight: 900;
+    color: white;
+    font-family: 'Kalam', cursive;
+    transition: background-image 0.4s;
+}
+
+.buyButton:hover {
+    background-image: url("../ELEMENTS/buttons/buyButtonHover.png");
+}
+
+.bottomBar {
+    width: 100%;
+    height: 11%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottomInfo {
+    width: 90%;
+    height: 100%;
+}
+
+.cre8Logo {
+    background-image: url("../ELEMENTS/cre8.PNG");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    width: 10%;
+    height: 70%;
+    background-color: transparent;
+    border: none;
+}
+
+.logoBar {
+    width: 85%;
+    height: 100%;
+    
+    
+}
+
+.logoImg {
+    margin-left: 48%;
+    margin-top: 0.5%;
+    width: 20%;
+    height: 100%;
+    background-image: url("../ELEMENTS/logo.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.metaMaskBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 15%;
+    height: 100%;
+    
+}
+
+.foxImg{
+    background-image: url("../ELEMENTS/metamask.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20%;
+    height: 50%;
+    margin-top: 7%;
+}
+
+.enableFrame {
+    width: 75%;
+    height: 80%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.enableBtn {
+    width: 90%;
+    background-image: url("../ELEMENTS/buttons/TearButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    height: 70%;
+    color: rgb(184, 182, 182);
+    text-shadow: 0px 0px 2px rgb(209, 193, 104);
+    font-family: 'Kalam', cursive;
+    font-size: 140%;
+    margin-top: 5%;
+    transition: background-image 0.3s;
+}
+
+.enableBtn:hover {
+    background-image: url("../ELEMENTS/buttons/TearButtonHover.png");
+}
+
+.enableBtn1 {
+    width: 90%;
+    background-image: url("../ELEMENTS/buttons/TearButtonActive.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    height: 70%;
+    color: rgb(184, 182, 182);
+    text-shadow: 0px 0px 2px rgb(209, 193, 104);
+    font-family: 'Kalam', cursive;
+    font-size: 120%;
+    margin-top: 5%;
+}
+
+.topPrizeBanner {
+    position: absolute;
+
+    background-image: url("../ELEMENTS/futureui1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 19%;
+    height: 11%;
+    margin-top: 1.5%;
+    opacity: 0.85;
+    z-index: 0;
+}
+
+.linkIconBig {
+    margin-top: 4%;
+    width: 1.2em;
+    height: 1.2em;
+}
