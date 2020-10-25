@@ -11,22 +11,32 @@ import "../../CSS/mainScreen.css"
 
 const linkIcon = require("../../ELEMENTS/LinkLogo.png");
 
+const contractAddr = "0x70cf3e83E656500Aef55A1c685cEB6CCC86c1215"
+
 export function BaseScreen({ enable, hasMeta, elements, link,
-    maskAddress, category, backpack, pool,
+    maskAddress, category, backpack, pool, change,
     network, web3}) {
     
-    
+    const [loading, setLoading] = React.useState(false);
+
+    useEffect(() => {
+        if (loading) {
+            setLoading(false);
+        }
+    }, [change])
 
     const buyElements = () => {
         
-        let value = 10 * (10 ** 18);
+        let value = 0.5 * (10 ** 18);
         value = value.toString();
         console.log(value);
         // link.methods.approve(elements._address, value).send({ from: maskAddress }, (err, res) => {
         //     console.log(res)
         // })
-        elements.methods.getElements().send({ from: maskAddress }, (err, res) => {
+        let data = web3.utils.numberToHex("555"); // This needs to be deprecated.
+        link.methods.transferAndCall(contractAddr, value, data).send({ from: maskAddress }, (err, res) => {
             console.log(res);
+            setLoading(true);
         })
     }
 
@@ -101,9 +111,18 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                 />
             </div>
             <div className="bottomMidBar">
-                <button onClick={buyElements} className="buyButton">
-                    Purchase Gems (0.5 LINK)
-                </button>
+                {
+                    loading 
+                    ? 
+                        <div className="buyButton1" style={{ opacity: "0.7"}}>
+                            Please Wait
+                        </div>
+                    :
+                    <button onClick={buyElements} className="buyButton" style={{paddingRight: "3%"}}>
+                        Buy Gems: 0.5<img src={linkIcon} alt="link" style={{marginLeft: "3%", width: "2%", height: "4%", position: "absolute", top: "76%", left: "51%"}} />
+                    </button>
+                }
+                
             </div>
             <div className="bottomBar">
                 <div className="bottomInfo">

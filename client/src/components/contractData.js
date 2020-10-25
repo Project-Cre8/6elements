@@ -4,7 +4,7 @@ import { BaseScreen } from "./UI/baseScreen.js"
 
 const ethers = require("ethers");
 
-const gameAddr = "0x822fd9f5cc627a10bDCD60415256175404660F8E";
+const gameAddr = "0x70cf3e83E656500Aef55A1c685cEB6CCC86c1215";
 
 export function ContractData({ enable, hasMeta, maskAddress, network, web3, elements, link, elementsEventChange}) {
     
@@ -143,6 +143,7 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
                 web3={web3}
                 backpack={backpack}
                 pool={prizePool}
+                change={elementsEventChange}
             />
         )
     } else {

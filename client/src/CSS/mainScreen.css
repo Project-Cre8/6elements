@@ -74,6 +74,26 @@
     
 }
 
+.buyButton1 {
+    background-image: url("../ELEMENTS/buttons/buyButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    width: 20%;
+    height: 65%;
+    font-size: 180%;
+    font-weight: 900;
+    color: white;
+    font-family: 'Kalam', cursive;
+    transition: background-image 0.4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .buyButton {
     background-image: url("../ELEMENTS/buttons/buyButton.png");
     background-size: 100% 100%;
@@ -83,7 +103,8 @@
     background-color: transparent;
     width: 20%;
     height: 65%;
-    font-size: 140%;
+    font-size: 180%;
+    font-weight: 900;
     color: white;
     font-family: 'Kalam', cursive;
     transition: background-image 0.4s;
