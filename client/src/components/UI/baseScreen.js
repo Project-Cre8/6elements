@@ -73,6 +73,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.light}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
                 <Earth 
                     maskAddress={maskAddress}
@@ -80,6 +81,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.earth}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
                 <Fire 
                     maskAddress={maskAddress}
@@ -87,6 +89,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.fire}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
                 <Water 
                     maskAddress={maskAddress}
@@ -94,6 +97,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.water}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
                 <Wind 
                     maskAddress={maskAddress}
@@ -101,6 +105,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.wind}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
                 <Dark 
                     maskAddress={maskAddress}
@@ -108,6 +113,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     network={network}
                     inventory={backpack.dark}
                     hasMeta={hasMeta}
+                    pool={pool}
                 />
             </div>
             <div className="bottomMidBar">

@@ -3,21 +3,29 @@ import React, { useEffect } from 'react';
 
 import "../../../CSS/elements.css"
 
+const linkIcon = require("../../../ELEMENTS/LinkLogo.png");
 
-export function Dark({ enable, hasMeta, 
+
+export function Dark({ enable, hasMeta, pool,
     maskAddress, category, inventory,
     network, web3}) {
     
     
     const [one, setOne] = React.useState(0);
     const [two, setTwo] = React.useState(0);
+    const [prize, setPrize] = React.useState(0);
+    const [prizeReady, setPrizeReady] = React.useState(false);
     
     useEffect(() => {
         console.log(typeof inventory);
         if (typeof inventory !== "undefined") {
             setOne(inventory.a);
             setTwo(inventory.b);
+            if (inventory.a > 0 && inventory.b > 0) {
+                setPrizeReady(true);
+            }
         }
+        setPrize(parseFloat(pool * 0.95).toFixed(2));
     }, [hasMeta, inventory]);
 
    
@@ -42,9 +50,18 @@ export function Dark({ enable, hasMeta,
                 </div>
             </div>
             <div className="elementButtonBox">
-                <button className="redeemButton">
-                    Redeem
-                </button>
+                {
+                    prizeReady 
+                    ?
+                    <button className="redeemButton">
+                        Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "79.4%"}} />
+                    </button>
+                    :
+                    <button className="redeemButton1" disabled={true}>
+                        Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "79.4%"}} />
+                    </button>
+                }
+                
                 
             </div>
         </div>

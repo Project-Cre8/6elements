@@ -366,17 +366,37 @@
     justify-content: center;
 }
 
-.redeemButton {
+.redeemButton1 {
     background-image: url("../ELEMENTS/buttons/redeemButton.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
+    padding-left: 13%;
+    text-align: left;
     border: none;
     width: 90%;
     height: 80%;
     background-color: transparent;
     color: rgb(158, 158, 158);
-    font-size: 130%;
+    font-size: 110%;
+    font-family: 'Kalam', cursive;
+    font-weight: 900;
+    opacity: 0.6;
+}
+
+.redeemButton {
+    background-image: url("../ELEMENTS/buttons/redeemButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 13%;
+    text-align: left;
+    border: none;
+    width: 90%;
+    height: 80%;
+    background-color: transparent;
+    color: rgb(158, 158, 158);
+    font-size: 110%;
     font-family: 'Kalam', cursive;
     font-weight: 900;
     transition: background-image 0.4s, color 0.4s;
