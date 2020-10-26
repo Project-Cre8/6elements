@@ -26,7 +26,7 @@ export function Web3Base({maskAddress, network, hasMeta, enable}) {
             const Link = new web3.eth.Contract(linkAbi.abi);
             
             // assign correct address to contract objects
-            Elements.options.address = "0x70cf3e83E656500Aef55A1c685cEB6CCC86c1215"; // elements.networks[network].address;
+            Elements.options.address = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee"; // elements.networks[network].address;
             Link.options.address = "0xa36085F69e2889c224210F603D836748e7dC0088";
 
             web3.eth.getBalance(maskAddress, (err, res) => {

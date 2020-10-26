@@ -6,7 +6,7 @@ import "../../../CSS/elements.css"
 const linkIcon = require("../../../ELEMENTS/LinkLogo.png");
 
 export function Wind({ enable, hasMeta, pool,
-    maskAddress, category, inventory,
+    maskAddress, category, inventory, elements,
     network, web3}) {
     
     
@@ -29,7 +29,11 @@ export function Wind({ enable, hasMeta, pool,
     }, [hasMeta, inventory]);
 
    
-
+    const redeemTokens = () => {
+        elements.methods.redeem(3).send({from: maskAddress}, (err, res) => {
+            console.log(res);
+        })
+    }
     
 
     return (
@@ -59,7 +63,7 @@ export function Wind({ enable, hasMeta, pool,
                 {
                     prizeReady 
                     ?
-                    <button className="redeemButton">
+                    <button className="redeemButton" onClick={redeemTokens}>
                         Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "68.2%"}} />
                     </button>
                     :

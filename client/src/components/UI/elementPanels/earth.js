@@ -6,7 +6,7 @@ import "../../../CSS/elements.css"
 const linkIcon = require("../../../ELEMENTS/LinkLogo.png");
 
 export function Earth({ enable, hasMeta, pool,
-    maskAddress, category, inventory,
+    maskAddress, category, inventory, elements,
     network, web3}) {
     
     const [one, setOne] = React.useState(0);
@@ -31,7 +31,11 @@ export function Earth({ enable, hasMeta, pool,
     }, [hasMeta, inventory]);
     
 
-   
+    const redeemTokens = () => {
+        elements.methods.redeem(2).send({from: maskAddress}, (err, res) => {
+            console.log(res);
+        })
+    }
 
     
 
@@ -62,7 +66,7 @@ export function Earth({ enable, hasMeta, pool,
                 {
                     prizeReady 
                     ?
-                    <button className="redeemButton">
+                    <button className="redeemButton" onClick={redeemTokens}>
                         Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "34.7%"}} />
                     </button>
                     :

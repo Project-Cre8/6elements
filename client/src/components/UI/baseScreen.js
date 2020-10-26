@@ -11,7 +11,7 @@ import "../../CSS/mainScreen.css"
 
 const linkIcon = require("../../ELEMENTS/LinkLogo.png");
 
-const contractAddr = "0x70cf3e83E656500Aef55A1c685cEB6CCC86c1215"
+const contractAddr = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee"
 
 export function BaseScreen({ enable, hasMeta, elements, link,
     maskAddress, category, backpack, pool, change,
@@ -74,6 +74,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.light}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
                 <Earth 
                     maskAddress={maskAddress}
@@ -82,6 +83,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.earth}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
                 <Fire 
                     maskAddress={maskAddress}
@@ -90,6 +92,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.fire}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
                 <Water 
                     maskAddress={maskAddress}
@@ -98,6 +101,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.water}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
                 <Wind 
                     maskAddress={maskAddress}
@@ -106,6 +110,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.wind}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
                 <Dark 
                     maskAddress={maskAddress}
@@ -114,6 +119,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                     inventory={backpack.dark}
                     hasMeta={hasMeta}
                     pool={pool}
+                    elements={elements}
                 />
             </div>
             <div className="bottomMidBar">

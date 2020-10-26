@@ -7,7 +7,7 @@ const linkIcon = require("../../../ELEMENTS/LinkLogo.png");
 
 
 export function Light({ enable, hasMeta, pool,
-    maskAddress, category, inventory,
+    maskAddress, category, inventory, elements,
     network, web3}) {
     
     
@@ -29,7 +29,11 @@ export function Light({ enable, hasMeta, pool,
         }, [hasMeta, inventory]);
 
    
-
+        const redeemTokens = () => {
+            elements.methods.redeem(4).send({from: maskAddress}, (err, res) => {
+                console.log(res);
+            })
+        }
     
 
     return (
@@ -53,7 +57,7 @@ export function Light({ enable, hasMeta, pool,
                 {
                     prizeReady 
                     ?
-                    <button className="redeemButton">
+                    <button className="redeemButton" onClick={redeemTokens}>
                         Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "23.5%"}} />
                     </button>
                     :

@@ -4,7 +4,7 @@ import { BaseScreen } from "./UI/baseScreen.js"
 
 const ethers = require("ethers");
 
-const gameAddr = "0x70cf3e83E656500Aef55A1c685cEB6CCC86c1215";
+const gameAddr = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee";
 
 export function ContractData({ enable, hasMeta, maskAddress, network, web3, elements, link, elementsEventChange}) {
     

@@ -6,7 +6,7 @@ import "../../../CSS/elements.css"
 const linkIcon = require("../../../ELEMENTS/LinkLogo.png");
 
 export function Water({ enable, hasMeta, pool,
-    maskAddress, category, inventory,
+    maskAddress, category, inventory, elements,
     network, web3}) {
     
     
@@ -28,7 +28,11 @@ export function Water({ enable, hasMeta, pool,
         setPrize(parseFloat(pool * 0.07).toFixed(2));
     }, [hasMeta, inventory]);
 
-   
+    const redeemTokens = () => {
+        elements.methods.redeem(1).send({from: maskAddress}, (err, res) => {
+            console.log(res);
+        })
+    }
 
     
 
@@ -59,7 +63,7 @@ export function Water({ enable, hasMeta, pool,
                 {
                     prizeReady 
                     ?
-                    <button className="redeemButton">
+                    <button className="redeemButton" onClick={redeemTokens}>
                         Win {prize} <img src={linkIcon} alt="linky" style={{ width: "1.2em", height: "1.2em", position: "absolute", top: "59.7%", left: "57.2%"}} />
                     </button>
                     :
