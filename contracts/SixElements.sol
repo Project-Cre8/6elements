@@ -12,9 +12,9 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
   uint256 public constant playFee = 0.5 * (10**18);
   uint256 public constant managementFee = 0.1 * (10**18);
 
-  mapping(uint256 => uint256) public rewardRates;
   mapping(uint256 => Token) public tokens;
   mapping(bytes32 => address) private _receivers;
+  uint256[6] public rewardRates;
   Rate[] public rates;
 
   struct Rate {
@@ -57,27 +57,33 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
   {
     keyHash = 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4;
     fee = 0.1 * 10**18; // 0.1 LINK
-    rewardRates[0] = 4;
+    // Fire
+    rewardRates[0] = 5;
+    rates.push(Rate({number: 1900000, element: 0, rank: 0}));
+    rates.push(Rate({number: 700000, element: 0, rank: 1}));
+    rates.push(Rate({number: 300000, element: 0, rank: 2}));
+    // Water
     rewardRates[1] = 7;
-    rewardRates[2] = 9;
-    rewardRates[3] = 11;
-    rewardRates[4] = 35;
-    rewardRates[5] = 80;
-    rates.push(Rate({number: 1800000, element: 0, rank: 0}));
-    rates.push(Rate({number: 800000, element: 0, rank: 1}));
-    rates.push(Rate({number: 200000, element: 0, rank: 2}));
-    rates.push(Rate({number: 1600000, element: 1, rank: 0}));
-    rates.push(Rate({number: 700000, element: 1, rank: 1}));
-    rates.push(Rate({number: 75000, element: 1, rank: 2}));
-    rates.push(Rate({number: 1400000, element: 2, rank: 0}));
-    rates.push(Rate({number: 600000, element: 2, rank: 1}));
-    rates.push(Rate({number: 8000, element: 2, rank: 2}));
-    rates.push(Rate({number: 1200000, element: 3, rank: 0}));
+    rates.push(Rate({number: 1800000, element: 1, rank: 0}));
+    rates.push(Rate({number: 600000, element: 1, rank: 1}));
+    rates.push(Rate({number: 150000, element: 1, rank: 2}));
+    // Earth
+    rewardRates[2] = 15;
+    rates.push(Rate({number: 1300000, element: 2, rank: 0}));
+    rates.push(Rate({number: 500000, element: 2, rank: 1}));
+    rates.push(Rate({number: 50000, element: 2, rank: 2}));
+    // Wind
+    rewardRates[3] = 25;
+    rates.push(Rate({number: 1292989, element: 3, rank: 0}));
     rates.push(Rate({number: 400000, element: 3, rank: 1}));
-    rates.push(Rate({number: 990, element: 3, rank: 2}));
-    rates.push(Rate({number: 715999, element: 4, rank: 0}));
+    rates.push(Rate({number: 7000, element: 3, rank: 2}));
+    // Light
+    rewardRates[4] = 50;
+    rates.push(Rate({number: 700000, element: 4, rank: 0}));
     rates.push(Rate({number: 10, element: 4, rank: 1}));
-    rates.push(Rate({number: 500000, element: 5, rank: 0}));
+    // Dark
+    rewardRates[5] = 95;
+    rates.push(Rate({number: 300000, element: 5, rank: 0}));
     rates.push(Rate({number: 1, element: 5, rank: 1}));
   }
 
@@ -102,25 +108,8 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
 
     uint256 seed = uint256(blockhash(block.number - 1));
     bytes32 requestId = requestRandomness(keyHash, fee, seed);
-    // bytes32 requestId = getId(keyHash, fee, seed); // DELETE: For local test
     _receivers[requestId] = _from;
-
-    // DELETE: For local test
-    // fulfillRandomness(requestId, uint256(keccak256(abi.encodePacked(now, msg.sender, '1'))));
   }
-
-  // DELETE: For local test
-  // uint256 reqId;
-
-  // DELETE: For local test
-  // function getId(
-  //   bytes32 k,
-  //   uint256 f,
-  //   uint256 s
-  // ) internal returns (bytes32) {
-  //   reqId = reqId + 1;
-  //   return bytes32(reqId);
-  // }
 
   /**
    * Callback function used by VRF Coordinator
@@ -154,10 +143,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     for (uint256 i = 0; i < length; i++) {
       uint256 tokenId = tokenOfOwnerByIndex(msg.sender, i);
       Token memory token = tokens[tokenId];
-      if (
-        token.element == element
-        && !burnTokens[token.rank].set
-      ) {
+      if (token.element == element && !burnTokens[token.rank].set) {
         burnTokens[token.rank].set = true;
         burnTokens[token.rank].tokenId = tokenId;
         count++;
