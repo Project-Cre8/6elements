@@ -19,7 +19,7 @@ export function Web3Base({maskAddress, network, hasMeta, enable}) {
     const [ready, setReady] = React.useState(false);
 
     useEffect(() => {
-        console.log(maskAddress)
+        
         if (hasMeta && network === "42" && maskAddress !== "") {
             // create web3 and contract objects
             const web3 = new Web3(window.web3.currentProvider);

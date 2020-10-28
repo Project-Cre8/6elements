@@ -29,7 +29,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
         
         let value = 0.5 * (10 ** 18);
         value = value.toString();
-        console.log(maskAddress);
+        
         // link.methods.approve(elements._address, value).send({ from: maskAddress }, (err, res) => {
         //     console.log(res)
         // })

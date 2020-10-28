@@ -18,6 +18,7 @@ export function Fire({ enable, hasMeta, pool,
     
     useEffect(() => {
         if (typeof inventory !== "undefined") {
+            
             setOne(inventory.a);
             setTwo(inventory.b);
             setThree(inventory.c);
@@ -31,7 +32,7 @@ export function Fire({ enable, hasMeta, pool,
 
    
     const redeemTokens = () => {
-        elements.methods.redeem(0).send({from: maskAddress}, (err, res) => {
+        elements.methods.redeem("0").send({from: maskAddress}, (err, res) => {
             console.log(res);
         })
     }

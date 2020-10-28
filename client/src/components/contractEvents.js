@@ -25,7 +25,7 @@ export function ContractEvents({
             let subscriptionNova;
             
             elements.getPastEvents("allEvents", {fromBlock: 0}, (err, res) => {
-                console.log(res);
+                
                 let currentBlock; 
                 if (res.length === 0) {
                     currentBlock = 0;
@@ -53,7 +53,7 @@ export function ContractEvents({
                     setLoaded(true);
                 })
                 .on("data", (item) => {
-                    console.log(item);
+                    
                     setElementsEventChange(item);
                     while (dataListNova.length > 19) {
                         dataListNova.shift();

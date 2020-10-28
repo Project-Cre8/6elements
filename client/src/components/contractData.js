@@ -51,12 +51,12 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
 
             link.methods.balanceOf(gameAddr).call((e, r) => {
                 let prize = web3.utils.fromWei(r);
-                console.log(prize)
+                
                 setPrizePool(prize);
             })
-            console.log(maskAddress)
+            
             elements.methods.balanceOf(maskAddress).call((err, res) => {
-                console.log(res);
+                
                 // Obj.regular = ethers.utils.formatUnits(res.regular, 6);
                 let tokens = res;
                 let i = 0;
@@ -69,6 +69,7 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
                         elements.methods.tokenOfOwnerByIndex(maskAddress, i).call((err, res) => {
                             elements.methods.tokenInfo(res).call((error, result) => {
                                 if (result.element === "0") {
+                                    console.log(result);
                                     if (result.rank === "0") {
                                         inventory.fire.a += 1;
                                     } else if (result.rank === "1") {
