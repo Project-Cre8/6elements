@@ -53,6 +53,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
       vrf, // VRF Coordinator
       link // LINK Token
     )
+    Ownable()
     ERC721(name, symbol)
   {
     keyHash = 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4;
