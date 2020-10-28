@@ -28,7 +28,7 @@ export function Earth({ enable, hasMeta, pool,
         }
         setPrize(parseFloat(pool * 0.15).toFixed(2));
         
-    }, [hasMeta, inventory]);
+    }, [hasMeta, inventory, pool]);
     
 
     const redeemTokens = () => {

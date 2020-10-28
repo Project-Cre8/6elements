@@ -11,7 +11,7 @@ import "../../CSS/mainScreen.css"
 
 const linkIcon = require("../../ELEMENTS/LinkLogo.png");
 
-const contractAddr = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee"
+const contractAddr = "0x08804dD66806E3F1BF3c771F52780a53C65Ec75D"
 
 export function BaseScreen({ enable, hasMeta, elements, link,
     maskAddress, category, backpack, pool, change,
@@ -29,7 +29,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
         
         let value = 0.5 * (10 ** 18);
         value = value.toString();
-        console.log(value);
+        console.log(maskAddress);
         // link.methods.approve(elements._address, value).send({ from: maskAddress }, (err, res) => {
         //     console.log(res)
         // })

@@ -24,7 +24,7 @@ export function MetaMaskBox({ enable, hasMeta,
 
     const unlockMask = () => {
         console.log(maskAddress)
-        window.ethereum.enable();
+        window.web3.currentProvider.enable();
     }
 
     const addressOrEnable = () => {

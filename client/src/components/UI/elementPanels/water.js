@@ -26,7 +26,7 @@ export function Water({ enable, hasMeta, pool,
             }
         }
         setPrize(parseFloat(pool * 0.07).toFixed(2));
-    }, [hasMeta, inventory]);
+    }, [hasMeta, inventory, pool]);
 
     const redeemTokens = () => {
         elements.methods.redeem(1).send({from: maskAddress}, (err, res) => {

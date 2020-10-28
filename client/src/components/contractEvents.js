@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { ContractData } from "./contractData.js"
+import { LoadingScreen } from "./loading/loading";
 
 
 
@@ -8,7 +9,7 @@ export function ContractEvents({
     web3, ready, maskAddress, elements, link,
     etherBalance, enable, hasMeta, network}) {
 
-    
+    const [loaded, setLoaded] = React.useState(false);
 
     const [eventListElements, setEventListElements] = React.useState({list: []});
     const [elementsEventChange, setElementsEventChange] = React.useState({});
@@ -18,10 +19,13 @@ export function ContractEvents({
 
     // NOVA
     useEffect(() => {
+        setLoaded(false);
         if (ready) {
             let dataListNova = []
             let subscriptionNova;
+            
             elements.getPastEvents("allEvents", {fromBlock: 0}, (err, res) => {
+                console.log(res);
                 let currentBlock; 
                 if (res.length === 0) {
                     currentBlock = 0;
@@ -41,10 +45,12 @@ export function ContractEvents({
                     
                 });
                 setEventListElements({list: dataListNova})
+                setLoaded(true);
+                
                 subscriptionNova = elements.events.allEvents({
-                    fromBlock: currentBlock + 1
-                }, (err, res) => {
-                    console.log(res);
+                    fromBlock: currentBlock 
+                }, (errs, resi) => {
+                    setLoaded(true);
                 })
                 .on("data", (item) => {
                     console.log(item);
@@ -60,40 +66,34 @@ export function ContractEvents({
                         // if (item.returnValues.from.toUpperCase() === maskAddress.toUpperCase() || item.returnValues.to.toUpperCase() === maskAddress.toUpperCase()) {
                         //     dataListNova.push(item);
                         // }
-                    }
-                    
-                    
-                    
+                    } 
                 })
                 return () => subscriptionNova.unsubscribe(() => {});
             });
+            
         } else {
+            setLoaded(true);
             return;
         }
     }, [elements, ready, maskAddress, network]);
 
-    return (
-        
-        
-            
+    if (loaded) {
+        return (        
+            <ContractData 
+                network={network} 
+                enable={enable} 
+                hasMeta={hasMeta} 
+                maskAddress={maskAddress} 
+                elements={elements}
+                link={link}
+                web3={web3}
+                elementsEventChange={elementsEventChange}            
                 
-        <ContractData 
-            
-            network={network} 
-            enable={enable} 
-            hasMeta={hasMeta} 
-            maskAddress={maskAddress} 
-            elements={elements}
-            link={link}
-            web3={web3}
-            elementsEventChange={elementsEventChange}
-
-            
-            
-        />
-           
-
-        
-    )
+            />   
+        )
+    } else {
+        return (<LoadingScreen mark={3}/>)
+    }
+    
 }
 export default ContractEvents;

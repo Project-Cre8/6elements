@@ -26,7 +26,7 @@ export function Light({ enable, hasMeta, pool,
                 }
             }
             setPrize(parseFloat(pool * 0.50).toFixed(2));
-        }, [hasMeta, inventory]);
+        }, [hasMeta, inventory, pool]);
 
    
         const redeemTokens = () => {

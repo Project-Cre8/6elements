@@ -27,7 +27,7 @@ export function Fire({ enable, hasMeta, pool,
         }
 
         setPrize(parseFloat(pool * 0.05).toFixed(2));
-    }, [hasMeta, inventory]);
+    }, [hasMeta, inventory, pool]);
 
    
     const redeemTokens = () => {

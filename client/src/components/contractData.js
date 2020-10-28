@@ -1,10 +1,11 @@
 import React, { useEffect, useCallback } from 'react'
 import { BaseScreen } from "./UI/baseScreen.js"
+import { LoadingScreen } from "./loading/loading";
 
 
 const ethers = require("ethers");
 
-const gameAddr = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee";
+const gameAddr = "0x08804dD66806E3F1BF3c771F52780a53C65Ec75D";
 
 export function ContractData({ enable, hasMeta, maskAddress, network, web3, elements, link, elementsEventChange}) {
     
@@ -13,10 +14,9 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
     const [prizePool, setPrizePool] = React.useState(0);
     
     useEffect(() => {
-        
-        
-
-        if (maskAddress !== "" && network === "42" && typeof elements.methods !== "undefined" && hasMeta) {
+        setLoaded(false);
+    
+        if (maskAddress !== "" && network === "42" && typeof elements.methods !== "undefined" && hasMeta && typeof link.methods !== "undefined") {
             
             let inventory = {
                 light: {
@@ -54,8 +54,9 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
                 console.log(prize)
                 setPrizePool(prize);
             })
-            
+            console.log(maskAddress)
             elements.methods.balanceOf(maskAddress).call((err, res) => {
+                console.log(res);
                 // Obj.regular = ethers.utils.formatUnits(res.regular, 6);
                 let tokens = res;
                 let i = 0;
@@ -126,7 +127,7 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
         }
             
         
-    }, [maskAddress, network, elementsEventChange]);
+    }, [maskAddress, network, elementsEventChange, elements, hasMeta, link, web3]);
 
     
 
@@ -147,7 +148,7 @@ export function ContractData({ enable, hasMeta, maskAddress, network, web3, elem
             />
         )
     } else {
-        return(<div> Loading </div>)
+        return(<LoadingScreen mark={4}/>)
     }
     
 }

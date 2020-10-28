@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ContractEvents } from "./contractEvents.js"
-
+import { LoadingScreen } from "./loading/loading";
 
 import Web3 from "web3";
 
@@ -19,6 +19,7 @@ export function Web3Base({maskAddress, network, hasMeta, enable}) {
     const [ready, setReady] = React.useState(false);
 
     useEffect(() => {
+        console.log(maskAddress)
         if (hasMeta && network === "42" && maskAddress !== "") {
             // create web3 and contract objects
             const web3 = new Web3(window.web3.currentProvider);
@@ -26,7 +27,7 @@ export function Web3Base({maskAddress, network, hasMeta, enable}) {
             const Link = new web3.eth.Contract(linkAbi.abi);
             
             // assign correct address to contract objects
-            Elements.options.address = "0x83658Da8e4baAA85f040a79a5F3F26e753603dee"; // elements.networks[network].address;
+            Elements.options.address = "0x08804dD66806E3F1BF3c771F52780a53C65Ec75D"; // elements.networks[network].address;
             Link.options.address = "0xa36085F69e2889c224210F603D836748e7dC0088";
 
             web3.eth.getBalance(maskAddress, (err, res) => {
@@ -60,7 +61,7 @@ export function Web3Base({maskAddress, network, hasMeta, enable}) {
             />
         )
     } else {
-        return (<div>Loading2</div>)
+        return (<LoadingScreen mark={2}/>)
     }
     
 }

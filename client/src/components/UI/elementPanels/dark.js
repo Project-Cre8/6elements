@@ -17,7 +17,6 @@ export function Dark({ enable, hasMeta, pool,
     const [prizeReady, setPrizeReady] = React.useState(false);
     
     useEffect(() => {
-        console.log(typeof inventory);
         if (typeof inventory !== "undefined") {
             setOne(inventory.a);
             setTwo(inventory.b);
@@ -26,7 +25,7 @@ export function Dark({ enable, hasMeta, pool,
             }
         }
         setPrize(parseFloat(pool * 0.95).toFixed(2));
-    }, [hasMeta, inventory]);
+    }, [hasMeta, inventory, pool]);
 
    
     const redeemTokens = () => {

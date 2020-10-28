@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Web3Base } from "./components/web3Base.js"
+import { LoadingScreen } from "./components/loading/loading";
 
 import "./App.css";
 
@@ -11,6 +12,7 @@ function App() {
 
   useEffect(() => {
     setLoaded(false);
+    
     if (window.ethereum) {
       setNetwork(window.ethereum.networkVersion);
       if (
@@ -56,12 +58,11 @@ function App() {
           network={network}
           maskAddress={maskAddress}
           hasMeta={hasMeta}
-          enable={unlockMask}
-          unlockMask={unlockMask}
+          
       />
     );
   } else {
-    return <div>loading1 {maskAddress} </div>; // Do loading screen here. ACTUALLY DO IT THIS TIME
+    return <LoadingScreen mark={1}/>; // Do loading screen here. ACTUALLY DO IT THIS TIME
   }
 }
 
