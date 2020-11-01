@@ -17,6 +17,7 @@ export function Fire({ enable, hasMeta, pool,
     const [prizeReady, setPrizeReady] = React.useState(false);
     
     useEffect(() => {
+        console.log(inventory)
         if (typeof inventory !== "undefined") {
             
             setOne(inventory.a);

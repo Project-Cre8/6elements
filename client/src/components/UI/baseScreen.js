@@ -11,10 +11,10 @@ import "../../CSS/mainScreen.css"
 
 const linkIcon = require("../../ELEMENTS/LinkLogo.png");
 
-const contractAddr = "0x08804dD66806E3F1BF3c771F52780a53C65Ec75D"
+const contractAddr = "0x1a4c2648211E3A912825fE3a79a021db4E530f4f"
 
 export function BaseScreen({ enable, hasMeta, elements, link,
-    maskAddress, category, backpack, pool, change,
+    maskAddress, category, backpack, pool, change, linkBalance,
     network, web3}) {
     
     const [loading, setLoading] = React.useState(false);
@@ -33,7 +33,7 @@ export function BaseScreen({ enable, hasMeta, elements, link,
         // link.methods.approve(elements._address, value).send({ from: maskAddress }, (err, res) => {
         //     console.log(res)
         // })
-        let data = web3.utils.numberToHex("555"); // This needs to be deprecated.
+        let data = web3.utils.numberToHex("556"); // This needs to be deprecated.
         link.methods.transferAndCall(contractAddr, value, data).send({ from: maskAddress }, (err, res) => {
             console.log(res);
             setLoading(true);
@@ -137,10 +137,25 @@ export function BaseScreen({ enable, hasMeta, elements, link,
                 
             </div>
             <div className="bottomBar">
+                
                 <div className="bottomInfo">
+                    <div className="openSeaBox" >
+                        <button className="openSeaButton"></button>
+                    </div>
+                    <div className="balanceBox" >
+                        <div className="yourBalance">
+                            Link Balance
+                        </div>
+                        <div className="balanceAmts">
+                            {linkBalance} <img src={linkIcon} alt="link" className="linkIconBig" />
+                        </div>
+                    </div>
+                    <div className="buyLink" >
 
+                    </div>
+                    <button className="cre8Logo" onClick={cre8Link} />
                 </div>
-                <button className="cre8Logo" onClick={cre8Link} />
+                
             </div>
         </div>
     )

@@ -18,6 +18,7 @@ export function Earth({ enable, hasMeta, pool,
     // const [hasBox, setHasBox] = React.useState(false);
     
     useEffect(() => {
+        console.log(inventory)
         if (typeof inventory !== "undefined") {
             setOne(inventory.a);
             setTwo(inventory.b);

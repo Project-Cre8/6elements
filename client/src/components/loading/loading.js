@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import { MetaMaskBox } from "./metaMaskBox.js";
+import { MetaMaskBox } from "../UI/metaMaskBox.js";
 // import { Light } from "./elementPanels/light";
 // import { Earth } from "./elementPanels/earth";
 // import { Fire } from "./elementPanels/fire";
@@ -27,11 +27,11 @@ export function LoadingScreen({ mark }) {
                 <div className="logoBar">
                     <div className="logoImg" />
                 </div>
-                {/* <MetaMaskBox 
-                    maskAddress={maskAddress}
-                    web3={web3}
-                    network={network}
-                /> */}
+                <MetaMaskBox 
+                    // maskAddress={maskAddress}
+                    // web3={web3}
+                    // network={network}
+                />
             </div>
             <div className="topMidBar">
                 

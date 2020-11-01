@@ -124,8 +124,64 @@
 }
 
 .bottomInfo {
-    width: 90%;
+    width: 70%;
     height: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.openSeaBox {
+    width: 35%;
+    height: 100%;
+    text-align: left;
+}
+
+.openSeaButton {
+    background-image: url("../ELEMENTS/openSeaLogo.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    width: 40%;
+    height: 100%;
+}
+
+.balanceBox {
+    width: 30%;
+    height: 100%;
+    
+    text-align: center;
+}
+
+.yourBalance {
+    color: white;
+    font-weight: 900;
+    font-family: 'Kalam', cursive;
+    font-size: 140%;
+    
+
+}
+
+.balanceAmts {
+    color: pink;
+    font-size: 120%;
+    font-family: 'kalam', cursive;
+    
+}
+
+.linkIconBalance {
+    position: relative;
+    top: 5%;
+}
+
+.buyLink {
+    width: 25%;
+    height: 100%;
+    /* border: green solid 2px; */
 }
 
 .cre8Logo {
