@@ -21,10 +21,18 @@ module.exports = {
       provider: function () {
         return new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${infuraKey}`);
       },
-      gas: 5000000,
-      gasPrice: 25000000000,
+      
+      
       network_id: 42,
     },
+    ropsten: {
+      provider: function () {
+        return new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${infuraKey}`);
+      },
+      gas: 5000000,
+      gasPrice: 25000000000,
+      network_id: 3,
+    }
   },
   compilers: {
     solc: {

@@ -1,0 +1,408 @@
+.elementPanel {
+    width: 9.2%;
+    height: 85%;
+    box-shadow: 1px 0px 5px rgb(117, 110, 110);
+    border-radius: 20px;
+    margin-left: 1%;
+    margin-right: 1%;
+    font-family: 'Kalam', cursive;
+    text-align: center;
+    
+}
+
+.elementTitle {
+    
+    width: 100%;
+    height: 10%;
+    color: white;
+    font-weight: 900;
+    font-size: 160%;
+    margin-bottom: 5%;
+}
+
+.elementTokenDual {
+    width: 100%;
+    height: 30%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementTokenTri {
+    width: 100%;
+    height: 20%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.light1 {
+    background-image: url("../ELEMENTS/gems/light1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.light1Off {
+    background-image: url("../ELEMENTS/gemsOff/light1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 35%;
+    height: 70%; 
+}
+
+.light2 {
+    background-image: url("../ELEMENTS/gems/light2.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.light2Off {
+    background-image: url("../ELEMENTS/gemsOff/light2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+}
+
+.earth1 {
+    background-image: url("../ELEMENTS/gems/earth1.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth2 {
+    background-image: url("../ELEMENTS/gems/earth2.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth3 {
+    background-image: url("../ELEMENTS/gems/earth3.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.earth1Off {
+    background-image: url("../ELEMENTS/gemsOff/earth1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth2Off {
+    background-image: url("../ELEMENTS/gemsOff/earth2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.earth3Off {
+    background-image: url("../ELEMENTS/gemsOff/earth3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.fire1 {
+    background-image: url("../ELEMENTS/gems/fire1.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire2 {
+    background-image: url("../ELEMENTS/gems/fire2.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire3 {
+    background-image: url("../ELEMENTS/gems/fire3.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.fire1Off {
+    background-image: url("../ELEMENTS/gemsOff/fire1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire2Off {
+    background-image: url("../ELEMENTS/gemsOff/fire2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.fire3Off {
+    background-image: url("../ELEMENTS/gemsOff/fire3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.water1 {
+    background-image: url("../ELEMENTS/gems/water1.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water2 {
+    background-image: url("../ELEMENTS/gems/water2.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water3 {
+    background-image: url("../ELEMENTS/gems/water3.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.water1Off {
+    background-image: url("../ELEMENTS/gemsOff/water1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water2Off {
+    background-image: url("../ELEMENTS/gemsOff/water2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.water3Off {
+    background-image: url("../ELEMENTS/gemsOff/water3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.wind1 {
+    background-image: url("../ELEMENTS/gems/wind1.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind2 {
+    background-image: url("../ELEMENTS/gems/wind2.PNG");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind3 {
+    background-image: url("../ELEMENTS/gems/wind3.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.wind1Off {
+    background-image: url("../ELEMENTS/gemsOff/wind1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind2Off {
+    background-image: url("../ELEMENTS/gemsOff/wind2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+    
+}
+
+.wind3Off {
+    background-image: url("../ELEMENTS/gemsOff/wind3Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 85%;
+}
+
+.dark1 {
+    background-image: url("../ELEMENTS/gems/dark1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.dark2 {
+    background-image: url("../ELEMENTS/gems/dark2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.dark1Off {
+    background-image: url("../ELEMENTS/gemsOff/dark1Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.dark2Off {
+    background-image: url("../ELEMENTS/gemsOff/dark2Off.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 35%;
+    height: 70%;
+    
+}
+
+.tokenInfo {
+    width: 35%;
+    height: 30%;
+    color: white;
+}
+
+.elementButtonBox {
+    width: 100%;
+    height: 25%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.redeemButton1 {
+    background-image: url("../ELEMENTS/buttons/redeemButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 13%;
+    text-align: left;
+    border: none;
+    width: 90%;
+    height: 80%;
+    background-color: transparent;
+    color: rgb(158, 158, 158);
+    font-size: 110%;
+    font-family: 'Kalam', cursive;
+    font-weight: 900;
+    opacity: 0.6;
+}
+
+.redeemButton {
+    background-image: url("../ELEMENTS/buttons/redeemButton.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 13%;
+    text-align: left;
+    border: none;
+    width: 90%;
+    height: 80%;
+    background-color: transparent;
+    color: rgb(158, 158, 158);
+    font-size: 110%;
+    font-family: 'Kalam', cursive;
+    font-weight: 900;
+    transition: background-image 0.4s, color 0.4s;
+}
+
+.redeemButton:hover {
+    background-image: url("../ELEMENTS/buttons/redeemButtonHover.png");
+    color: white;
+}
