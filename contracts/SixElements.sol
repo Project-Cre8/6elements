@@ -9,11 +9,13 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 contract SixElements is VRFConsumerBase, ERC721, Ownable {
   bytes32 internal keyHash;
   uint256 internal fee;
+  uint256 internal _tokenId;
   uint256 public constant playFee = 0.5 * (10**18);
   uint256 public constant managementFee = 0.1 * (10**18);
 
   mapping(uint256 => Token) public tokens;
   mapping(bytes32 => address) private _receivers;
+  mapping(address => uint256) private _generating;
   uint256[6] public rewardRates;
   Rate[] public rates;
 
@@ -95,6 +97,10 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     rank = tokens[tokenId].rank;
   }
 
+  function generating() external view returns (uint256) {
+    return _generating[msg.sender];
+  }
+
   /**
    * Receiver function for ERC677
    */
@@ -110,6 +116,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     uint256 seed = uint256(blockhash(block.number - 1));
     bytes32 requestId = requestRandomness(keyHash, fee, seed);
     _receivers[requestId] = _from;
+    _generating[msg.sender] = _generating[msg.sender].add(2);
   }
 
   /**
@@ -119,46 +126,49 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     address receiver = _receivers[requestId];
 
     (uint8 element1, uint8 rank1) = _selectElement(randomness);
-    uint256 tokenId1 = _createToken(element1, rank1);
-    _mint(receiver, tokenId1);
-
+    _createToken(element1, rank1);
+    _mint(receiver, _tokenId);
+    _tokenId++;
     (uint8 element2, uint8 rank2) = _selectElement(uint256(keccak256(abi.encodePacked(randomness))));
-    uint256 tokenId2 = _createToken(element2, rank2);
-    _mint(receiver, tokenId2);
+    _createToken(element2, rank2);
+    _mint(receiver, _tokenId);
+    _tokenId++;
+    _generating[msg.sender] = _generating[msg.sender].sub(2);
 
     emit Receive(receiver, element1, rank1, element2, rank2);
   }
 
-  function redeem(uint256 element) external {
-    require(element <= 6, '6ELEMENT: invalid element id');
-    uint256 necessaryCount;
-    if (element <= 4) {
-      necessaryCount = 3;
+  function redeem(uint256[] calldata tokenIds) external {
+    // Check first token
+    require(ownerOf(tokenIds[0]) == msg.sender, '6ELEMENT: you are not owner');
+    uint8 element = tokens[tokenIds[0]].element;
+    bool[3] memory ranks;
+    if (element < 4) {
+      require(tokenIds.length == 3, '6ELEMENT: invalid id count');
     } else {
-      necessaryCount = 2;
+      require(tokenIds.length == 2, '6ELEMENT: invalid id count');
+      ranks[2] = true;
+    }
+    ranks[tokens[tokenIds[0]].rank] = true;
+
+    // Check other tokens
+    for (uint8 i = 1; i < tokenIds.length; i++) {
+      require(ownerOf(tokenIds[i]) == msg.sender, '6ELEMENT: you are not owner');
+      require(element == tokens[tokenIds[i]].element, '6ELEMENT: invalid token id');
+      ranks[tokens[tokenIds[i]].rank] = true;
     }
 
-    BurnToken[] memory burnTokens = new BurnToken[](necessaryCount);
-    uint256 length = balanceOf(msg.sender);
-    uint256 count;
-    for (uint256 i = 0; i < length; i++) {
-      uint256 tokenId = tokenOfOwnerByIndex(msg.sender, i);
-      Token memory token = tokens[tokenId];
-      if (token.element == element && !burnTokens[token.rank].set) {
-        burnTokens[token.rank].set = true;
-        burnTokens[token.rank].tokenId = tokenId;
-        count++;
-        if (count == necessaryCount) {
-          break;
-        }
-      }
-    }
-    require(count == necessaryCount, '6ELEMENT: you do not have necessary elements');
-
-    for (uint256 i = 0; i < burnTokens.length; i++) {
-      _burn(burnTokens[i].tokenId);
+    // Are there all ranks?
+    for (uint8 i = 0; i < ranks.length; i++) {
+      require(ranks[i] == true, '6ELEMENT: invalid token id');
     }
 
+    // Burn
+    for (uint256 i = 0; i < tokenIds.length; i++) {
+      _burn(tokenIds[i]);
+    }
+
+    // Reward
     uint256 totalBalance = LINK.balanceOf(address(this));
     uint256 reward = totalBalance.mul(rewardRates[element]).div(100);
     require(LINK.transfer(msg.sender, reward), '6ELEMENT: transfer error');
@@ -180,10 +190,8 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     revert('6ELEMENT: Selecting element error');
   }
 
-  function _createToken(uint8 element, uint8 rank) private returns (uint256 tokenId) {
-    tokenId = totalSupply();
-
-    tokens[tokenId] = Token({element: element, rank: rank});
+  function _createToken(uint8 element, uint8 rank) private {
+    tokens[_tokenId] = Token({element: element, rank: rank});
   }
 
   function withdraw() external onlyOwner {
