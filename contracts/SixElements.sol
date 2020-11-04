@@ -7,9 +7,10 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 
 contract SixElements is VRFConsumerBase, ERC721, Ownable {
-  bytes32 internal keyHash;
-  uint256 internal fee;
-  uint256 internal _tokenId;
+  address private link;
+  bytes32 private keyHash;
+  uint256 private fee;
+  uint256 private _tokenId;
   uint256 public constant playFee = 0.5 * (10**18);
   uint256 public constant managementFee = 0.1 * (10**18);
 
@@ -38,9 +39,6 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
   event Receive(address indexed player, uint256 element1, uint256 rank1, uint256 element2, uint256 rank2);
   event Redeem(address indexed player, uint256 element, uint256 reward);
 
-  address constant vrf = 0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9;
-  address constant link = 0xa36085F69e2889c224210F603D836748e7dC0088;
-
   /**
    * Constructor inherits VRFConsumerBase
    *
@@ -49,29 +47,35 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
    * LINK token address:                0xa36085F69e2889c224210F603D836748e7dC0088
    * Key Hash: 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4
    */
-  constructor(string memory name, string memory symbol)
+  constructor(
+    string memory name,
+    string memory symbol,
+    address _vrf,
+    address _link
+  )
     public
     VRFConsumerBase(
-      vrf, // VRF Coordinator
-      link // LINK Token
+      _vrf, // VRF Coordinator
+      _link // LINK Token
     )
     Ownable()
     ERC721(name, symbol)
   {
+    link = _link;
     keyHash = 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4;
     fee = 0.1 * 10**18; // 0.1 LINK
     // Fire
-    rewardRates[0] = 5;
+    rewardRates[0] = 1;
     rates.push(Rate({number: 1900000, element: 0, rank: 0}));
     rates.push(Rate({number: 700000, element: 0, rank: 1}));
     rates.push(Rate({number: 300000, element: 0, rank: 2}));
     // Water
-    rewardRates[1] = 7;
+    rewardRates[1] = 5;
     rates.push(Rate({number: 1800000, element: 1, rank: 0}));
     rates.push(Rate({number: 600000, element: 1, rank: 1}));
     rates.push(Rate({number: 150000, element: 1, rank: 2}));
     // Earth
-    rewardRates[2] = 15;
+    rewardRates[2] = 10;
     rates.push(Rate({number: 1300000, element: 2, rank: 0}));
     rates.push(Rate({number: 500000, element: 2, rank: 1}));
     rates.push(Rate({number: 50000, element: 2, rank: 2}));
@@ -115,8 +119,9 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
 
     uint256 seed = uint256(blockhash(block.number - 1));
     bytes32 requestId = requestRandomness(keyHash, fee, seed);
+
     _receivers[requestId] = _from;
-    _generating[msg.sender] = _generating[msg.sender].add(2);
+    _generating[_from] += _generating[_from].add(2);
   }
 
   /**
