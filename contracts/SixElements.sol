@@ -121,7 +121,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     bytes32 requestId = requestRandomness(_keyHash, _fee, seed);
 
     _receivers[requestId] = _from;
-    _generating[_from] += _generating[_from].add(2);
+    _generating[_from] = _generating[_from].add(2);
   }
 
   /**
