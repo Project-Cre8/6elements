@@ -1,4 +1,5 @@
 const SixElements = artifacts.require('./SixElements.sol');
+const SixElementsTest = artifacts.require('./SixElementsTest.sol');
 const LinkToken = artifacts.require('./TestLinkToken.sol');
 const VRFCoordinator = artifacts.require('./VRFCoordinator.sol');
 
@@ -22,4 +23,7 @@ module.exports = async (deployer, network, accounts) => {
   }
 
   await deployer.deploy(SixElements, name, symbol, vrf, link);
+  if (network == 'development' || network == 'test') {
+    await deployer.deploy(SixElementsTest, name, symbol, vrf, link);
+  }
 };

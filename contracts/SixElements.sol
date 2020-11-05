@@ -7,10 +7,10 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 
 contract SixElements is VRFConsumerBase, ERC721, Ownable {
-  address private link;
-  bytes32 private keyHash;
-  uint256 private fee;
-  uint256 private _tokenId;
+  address link;
+  bytes32 private _keyHash;
+  uint256 private _fee;
+  uint256 internal _tokenId;
   uint256 public constant playFee = 0.5 * (10**18);
   uint256 public constant managementFee = 0.1 * (10**18);
 
@@ -62,8 +62,8 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     ERC721(name, symbol)
   {
     link = _link;
-    keyHash = 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4;
-    fee = 0.1 * 10**18; // 0.1 LINK
+    _keyHash = 0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4;
+    _fee = 0.1 * 10**18; // 0.1 LINK
     // Fire
     rewardRates[0] = 1;
     rates.push(Rate({number: 1900000, element: 0, rank: 0}));
@@ -118,7 +118,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     require(LINK.transfer(owner(), managementFee), '6ELEMENT: transfer error');
 
     uint256 seed = uint256(blockhash(block.number - 1));
-    bytes32 requestId = requestRandomness(keyHash, fee, seed);
+    bytes32 requestId = requestRandomness(_keyHash, _fee, seed);
 
     _receivers[requestId] = _from;
     _generating[_from] += _generating[_from].add(2);
@@ -195,7 +195,7 @@ contract SixElements is VRFConsumerBase, ERC721, Ownable {
     revert('6ELEMENT: Selecting element error');
   }
 
-  function _createToken(uint8 element, uint8 rank) private {
+  function _createToken(uint8 element, uint8 rank) internal {
     tokens[_tokenId] = Token({element: element, rank: rank});
   }
 
