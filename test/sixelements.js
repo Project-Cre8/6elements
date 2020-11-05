@@ -8,6 +8,7 @@ const VRFCoordinator = artifacts.require('./VRFCoordinator.sol');
 contract('SimpleStorage', (_accounts) => {
   // Initial settings
   const owner = _accounts[0];
+  const someone = _accounts[1];
   const decimalsLink = 10 ** 18;
   const playFee = 0.5 * decimalsLink;
   const MAX_INT = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
@@ -22,9 +23,9 @@ contract('SimpleStorage', (_accounts) => {
 
   context('Check default value', () => {
     it('Owner has LINK', async () => {
-      const linkToken = await LinkToken.deployed();
-      const balanceOf = await linkToken.balanceOf(owner);
-      console.log(balanceOf.toString());
+      const balanceOf = await this.linkToken.balanceOf(owner);
+
+      assert.equal(parseInt(balanceOf), 1000000 * decimalsLink, 'Invalid balance');
     });
   });
 
@@ -71,10 +72,15 @@ contract('SimpleStorage', (_accounts) => {
       await expectRevert(receipt, '6ELEMENT: invalid id count');
     });
 
-    it('should be able to redeem', async () => {
+    it("should not be able to redeem with someone's token", async () => {
       await this.sixElementsTest.mintToken(0, 2);
       this.balance++;
 
+      const receipt = this.sixElementsTest.redeem([2, 3, 4], { from: someone });
+      await expectRevert(receipt, '6ELEMENT: you are not owner');
+    });
+
+    it('should be able to redeem', async () => {
       const receipt = await this.sixElementsTest.redeem([2, 3, 4]);
       this.balance -= 3;
 
